@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-responsive.min.css' />
+    <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+    <h1><%= title %></h1>
+    <% if (images.length > 0){ %>
+      <ul class="thumbnails">
+        <% images.forEach(function(image){ %>
+          <li class="span3">
+            <a href="<%= image.url %>">
+              <img src="<%= image.previewurl %>" alt="<%= image.name%>" class="img-rounded"><br />
+              <%= image.name%>
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+    </div>
+  </body>
+</html>
