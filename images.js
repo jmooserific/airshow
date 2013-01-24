@@ -22,6 +22,12 @@ function init() {
         if (err) {
             console.log("Error reading files: ", err);
         } else {
+        
+            // Sort by date
+            list.sort(function(a, b) {
+               return fs.statSync(path.join(pathToOriginals, b)).mtime.getTime() -  fs.statSync(path.join(pathToOriginals, a)).mtime.getTime();
+            });
+            
             list.forEach(function(file) {
                 if (!file.match(excludeFilter)) {
                     // TODO: check to see if file is image
