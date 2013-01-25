@@ -40,7 +40,7 @@ function init() {
                       url: path.join(urlToOriginals, file),
                       previewurl: urlToPreview(path.join(urlToOriginals, file))
                     };
-                    generatePreview(path.join(pathToOriginals, file), 400, true);
+                    generatePreview(path.join(pathToOriginals, file), 400);
                     imageFiles.push(image);
                 }
             });
@@ -56,7 +56,7 @@ function urlToPreview(pathToOriginal) {
     return path.join(urlToPreviews, path.basename(pathToOriginal, path.extname(pathToOriginal)) + '.jpg');
 };
 
-function generatePreview(pathToOriginal, size, isSquare) {
+function generatePreview(pathToOriginal, size) {
     fs.exists(pathToPreview(pathToOriginal), function(exists) {
         if (!exists) {
             im.convert([pathToOriginal, '-quality','85%','-depth','8','-colorspace','sRGB','-thumbnail','400x400^','-size','400x400','-extent','400x400','xc:white','+swap','-gravity','center','-composite', pathToPreview(pathToOriginal)], function(err, stdout){
