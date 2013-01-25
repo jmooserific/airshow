@@ -1,12 +1,16 @@
+body {
+    font-weight: 200;
+    color: #aaa;
+}
+
 .page-header {
     border-bottom: none;
 }
 
 .page-header h1 {
-    font-weight: 100;
+    font-weight: inherit;
     font-size: 70px;
     text-transform: lowercase;
-    text-rendering: geometricPrecision;
 }
 
 .thumbnails {
@@ -19,10 +23,6 @@ img.preview {
 
 img.lazy {
   display: none;
-}
-
-.footer {
-    color: #aaa;
 }
 
 #lightbox {
