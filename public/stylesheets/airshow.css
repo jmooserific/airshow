@@ -2,6 +2,14 @@
     text-align: center;
 }
 
+img.preview {
+    width: 400px;
+}
+
+img.lazy {
+  display: none;
+}
+
 .footer {
     color: #aaa;
 }
