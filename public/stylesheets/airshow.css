@@ -1,3 +1,14 @@
+.page-header {
+    border-bottom: none;
+}
+
+.page-header h1 {
+    font-weight: 100;
+    font-size: 70px;
+    text-transform: lowercase;
+    text-rendering: geometricPrecision;
+}
+
 .thumbnails {
     text-align: center;
 }
@@ -24,6 +35,7 @@ img.lazy {
     text-align: center;
     z-index: 100;
 }
+
 #lightbox_content img {
     box-shadow:0 0 15px rgba(0, 0, 0, 0.8);
     -webkit-box-shadow:0 0 15px rgba(0, 0, 0, 0.8);
