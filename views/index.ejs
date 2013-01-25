@@ -4,24 +4,84 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap-responsive.min.css' />
+    <link rel='stylesheet' href='/stylesheets/airshow.css' />
     <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
     <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container">
-    <h1><%= title %></h1>
-    <% if (images.length > 0){ %>
-      <ul class="thumbnails">
-        <% images.forEach(function(image){ %>
-          <li class="span3">
-            <a href="<%= image.url %>">
-              <img src="<%= image.previewurl %>" alt="<%= image.name%>" class="img-rounded"><br />
-              <%= image.name%>
-            </a>
-          </li>
-        <% }) %>
-      </ul>
-    <% } %>
+        <div class="page-header">
+            <h1><%= title %></h1>
+        </div>
+        <% if (images.length > 0){ %>
+          <ul class="thumbnails">
+            <% images.forEach(function(image){ %>
+              <li class="span2">
+                <a href="<%= image.url %>" class="lightbox_trigger">
+                  <img src="<%= image.previewurl %>" alt="<%= image.name%>" class="">
+                </a>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
+        <hr>
+        <div class="footer">
+            Displayed by <a href="https://github.com/jmooserific/airshow">Airshow</a>
+        </div>
     </div>
+    <script>
+    function resizeImage() {
+        $("#lightbox img").css('margin-top', -1 * $("#lightbox img").height() / 2 );
+    };
+    
+    $(document).ready(function(){
+    
+        $('.lightbox_trigger').click(function(e) {
+        
+            //prevent default action (hyperlink)
+            e.preventDefault();
+        
+            //Get clicked link href
+            var image_href = $(this).attr("href");
+        
+            /* 	
+            If the lightbox window HTML already exists in document, 
+            change the img src to to match the href of whatever link was clicked
+        
+            If the lightbox window HTML doesn't exists, create it and insert it.
+            (This will only happen the first time around)
+            */
+        
+            if ($('#lightbox').length > 0) { // #lightbox exists
+            
+                //place href as img src value
+                $('#lightbox_content').html('<img src="' + image_href + '" />');
+            
+                //show lightbox window - you could use .show('fast') for a transition
+                $('#lightbox').show();
+            } else { //#lightbox does not exist - create and insert (runs 1st time only)
+            
+                //create HTML markup for lightbox window
+                var lightbox = 
+                '<div id="lightbox">' +
+                    '<div id="lightbox_content">' + //insert clicked link's href into img src
+                        '<img src="' + image_href +'">' +
+                    '</div>' +	
+                '</div>';
+                
+                //insert lightbox HTML into page
+                $('body').append(lightbox);
+                resizeImage();
+                
+                //Click anywhere on the page to get rid of lightbox window
+                $('#lightbox').click(function() {
+                    $('#lightbox').hide();
+                });
+                
+                $(window).resize(resizeImage());
+            }
+        });
+    });
+    </script>
   </body>
 </html>
