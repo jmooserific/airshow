@@ -30,9 +30,6 @@
         </div>
     </div>
     <script>
-    function resizeImage() {
-        $("#lightbox img").css('margin-top', -1 * $("#lightbox img").height() / 2 );
-    };
     
     $(document).ready(function(){
     
@@ -71,14 +68,11 @@
                 
                 //insert lightbox HTML into page
                 $('body').append(lightbox);
-                resizeImage();
                 
                 //Click anywhere on the page to get rid of lightbox window
                 $('#lightbox').click(function() {
                     $('#lightbox').hide();
-                });
-                
-                $(window).resize(resizeImage());
+                });                
             }
         });
     });
