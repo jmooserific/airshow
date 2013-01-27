@@ -17,7 +17,7 @@
           <ul class="thumbnails">
             <% images.forEach(function(image){ %>
               <li class="span2">
-                <a href="<%= image.url %>" class="lightbox_trigger">
+                <a href="<%= image.url %>" class="lightbox_trigger" data-width="<%= image.features.width %>" data-height="<%= image.features.height %>">
                   <img data-original="<%= image.previewurl %>" alt="<%= image.name%>" src="images/grey.gif" class="preview lazy">
                   <noscript><img src="<%= image.previewurl %>"></noscript>
                 </a>
@@ -33,6 +33,31 @@
         </div>
     </div>
     <script>
+    function resizeLightbox() {
+        if ($('#lightbox .front img') && $('#lightbox .front img').attr('data-width') && $('#lightbox .front img').attr('data-width') && $('#lightbox').is(':visible')) {
+            var originalWidth = $('#lightbox .front img').attr('data-width');
+            var originalHeight = $('#lightbox .front img').attr('data-height');
+            
+            var safeWidth = $(document).width() - 100;
+            var safeHeight = $(document).height() - 100;
+
+            var scaleWidth = originalWidth / safeWidth;
+            var scaleHeight = originalHeight / safeHeight;
+                        
+            if (scaleWidth > scaleHeight) {
+                $('.flip-container, .front, .back').width(originalWidth / scaleWidth);
+                $('.flip-container, .front, .back').height(originalHeight / scaleWidth);
+            } else {
+                $('.flip-container, .front, .back').width(originalWidth / scaleHeight);
+                $('.flip-container, .front, .back').height(originalHeight / scaleHeight);
+            }
+        }
+    }
+    
+    $(window).resize(function() {
+        resizeLightbox();
+    });
+    
     $(document).ready(function(){
         $("img.lazy").show().lazyload();
         
@@ -43,20 +68,39 @@
         
             //Get clicked link href
             var image_href = $(this).attr("href");
+            var width = $(this).attr("data-width");
+            var height = $(this).attr("data-height");
         
             //place href as img src value
-            $('#lightbox_content').html('<img src="' + image_href + '" style="display: none;">');
-        
+            $('#lightbox_content').html('<div class="flip-container"><div class="flipper"><div class="front"><img src="' + image_href + '" data-width="' + width + '" data-height="' + height + '"></div><div class="back"><h1>The Back</h1></div></div></div>');
+                        
             //show lightbox window - you could use .show('fast') for a transition
             $('#lightbox').fadeIn();
-            $('#lightbox_content img').show('fast');
             
+            resizeLightbox();
+            
+            $('#lightbox .front').click(function(event) {
+                $('#lightbox .flipper').css( "-webkit-transform","rotateY(180deg)" );
+                $('#lightbox .flipper').css( "-moz-transform","rotateY(180deg)" );
+                $('#lightbox .flipper').css( "transform","rotateY(180deg)" );
+
+                event.stopPropagation();
+            });
+            $('#lightbox .back').click(function(event) {
+                $('#lightbox .flipper').css( "-webkit-transform","rotateY(0deg)" );
+                $('#lightbox .flipper').css( "-moz-transform","rotateY(0deg)" );
+                $('#lightbox .flipper').css( "transform","rotateY(0deg)" );
+                
+                event.stopPropagation();
+            });
         });
         
         $('#lightbox').click(function() {
             $('#lightbox').fadeOut();
-        });                
+        });             
     });
+    
+    
     </script>
   </body>
 </html>

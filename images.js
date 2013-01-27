@@ -38,8 +38,21 @@ function init() {
                       filepath: path.join(pathToOriginals, file),
                       filepreview: pathToPreview(path.join(pathToOriginals, file)),
                       url: path.join(urlToOriginals, file),
-                      previewurl: urlToPreview(path.join(urlToOriginals, file))
+                      previewurl: urlToPreview(path.join(urlToOriginals, file)),
+                      features: {},
+                      metadata: {}
                     };
+                    
+                    im.identify(image.filepath, function(err, features){
+                      if (err) throw err;
+                      image.features = features;
+                    });
+                    
+                    im.readMetadata(image.filepath, function(err, metadata){
+                      if (err) throw err;
+                      image.metadata = metadata;
+                    });
+                    
                     generatePreview(path.join(pathToOriginals, file), 400);
                     imageFiles.push(image);
                 }
