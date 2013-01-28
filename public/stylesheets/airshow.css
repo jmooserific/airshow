@@ -15,7 +15,6 @@ body
 
 .thumbnails { text-align: center; }
 img.preview { width: 400px; }
-img.lazy { display: none; }
 
 #lightbox
 {
@@ -85,4 +84,8 @@ img.lazy { display: none; }
 	-webkit-transform: rotateY(180deg);
 	-moz-transform: rotateY(180deg);
 	transform: rotateY(180deg);
+}
+
+.back h1 {
+    font-size: 18pt;
 }
