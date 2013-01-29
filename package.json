@@ -11,7 +11,8 @@
         "mongodb": "1.1.8",
         "socket.io": "0.9.10",
         "step": "*",
-        "imagemagick": "*"
+        "imagemagick": "*",
+        "formidable": "*"
     },
     "engines": {
         "node": "0.8.*",

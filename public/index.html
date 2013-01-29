@@ -55,7 +55,8 @@
         });
         
         $('#lightbox').click(function() {
-            $('#lightbox').fadeOut();
+            closeLightbox();
+            window.location.hash = '#assets';
         });
     </script>
 </body>

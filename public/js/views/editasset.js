@@ -52,7 +52,7 @@ window.EditAssetView = Backbone.View.extend({
         this.model.save(null, {
             success: function (model) {
                 self.render();
-                app.navigate('assets/' + model.id, false);
+                app.navigate('assets/' + model.id + '/edit', false);
                 utils.showAlert('Success!', 'Asset saved successfully', 'alert-success');
             },
             error: function () {

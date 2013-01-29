@@ -32,15 +32,16 @@ window.Asset = Backbone.Model.extend({
 
         return _.size(messages) > 0 ? {isValid: false, messages: messages} : {isValid: true};
     },
-
+    
     defaults: {
         _id: null,
         title: "",
         description: "",
+        file: null,
         filename: null,
         preview: null,
-        dimensionsX: 0,
-        dimensionsY: 0
+        dimensionsX: 800,
+        dimensionsY: 800
     }
 });
 

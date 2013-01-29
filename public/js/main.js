@@ -1,7 +1,7 @@
 var AppRouter = Backbone.Router.extend({
 
     routes: {
-        ""                  : "list",
+        ""                  : "home",
         "assets"	: "list",
         "assets/page/:page"	 : "list",
         "assets/add"         : "addAsset",
@@ -31,28 +31,15 @@ var AppRouter = Backbone.Router.extend({
         var asset = new Asset({_id: id});
         asset.fetch({success: function(){
             $("#lightbox_content").html(new AssetView({model: asset}).el);
-            $('#lightbox').fadeIn();
-            resizeLightbox();
-            $('#lightbox .front').click(function(event) {
-                $('#lightbox .flipper').css( "-webkit-transform","rotateY(180deg)" );
-                $('#lightbox .flipper').css( "-moz-transform","rotateY(180deg)" );
-                $('#lightbox .flipper').css( "transform","rotateY(180deg)" );
-
-                event.stopPropagation();
-            });
-            $('#lightbox .back').click(function(event) {
-                $('#lightbox .flipper').css( "-webkit-transform","rotateY(0deg)" );
-                $('#lightbox .flipper').css( "-moz-transform","rotateY(0deg)" );
-                $('#lightbox .flipper').css( "transform","rotateY(0deg)" );
-                
-                event.stopPropagation();
-            });
+            
+            showLightbox();
         }});
     },
     
     editAsset: function (id) {
         var asset = new Asset({_id: id});
         asset.fetch({success: function(){
+            closeLightbox();
             $("#content").html(new EditAssetView({model: asset}).el);
         }});
         this.headerView.selectMenuItem();
@@ -60,18 +47,9 @@ var AppRouter = Backbone.Router.extend({
 
 	addAsset: function() {
         var asset = new Asset();
-        $('#content').html(new AssetView({model: asset}).el);
+        $('#content').html(new EditAssetView({model: asset}).el);
         this.headerView.selectMenuItem('add-menu');
-	},
-
-    about: function () {
-        if (!this.aboutView) {
-            this.aboutView = new AboutView();
-        }
-        $('#content').html(this.aboutView.el);
-        this.headerView.selectMenuItem('about-menu');
-    }
-
+	}
 });
 
 utils.loadTemplate(['HeaderView', 'AssetView', 'EditAssetView', 'AssetListItemView'], function() {
