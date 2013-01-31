@@ -36,7 +36,8 @@ window.Asset = Backbone.Model.extend({
         filename: null,
         type: null,
         originalData: null,
-        previewData: null,
+        originalGridID: null,
+        previewGridID: null,
         dimensionsX: 800,
         dimensionsY: 800
     }

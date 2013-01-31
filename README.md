@@ -15,13 +15,13 @@ The basic structure of the application was strongly inspired by the excellent [n
 * opens image in a lightbox
 * uses CSS transforms to flip image to show details
 * new images can be uploaded and previews are generated
-* images are stored and served from the database
-* responsive layout
+* images are stored and served from the database ([GridFS](http://docs.mongodb.org/manual/applications/gridfs/))
+* responsive layout– resize your browser window
 
 ##Coming soon##
 * validation
 * support for exif data
-* support for larger image files ([GridFS](http://docs.mongodb.org/manual/applications/gridfs/))
+* support for larger image files 
 * authentication/authorization
 
 ## To install on your own Heroku account:##
