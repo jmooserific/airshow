@@ -64,15 +64,24 @@ exports.updateAsset = function(req, res) {
     var asset = req.body;
     delete asset._id;
     console.log('Updating asset: ' + id);
+    var buffer = new Buffer(asset.originalData, 'base64');
+    asset.originalData = null;
     database.collection('assets', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, asset, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating asset: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
-                processAsset(asset, id);
-                console.log('' + result + ' document(s) updated');
-                res.send(asset);
+                grid.put(buffer, {metadata:{type: asset.type}, content_type: 'binary'}, function(err, fileInfo) {
+                    if (err) throw err;
+                    if (asset.originalGridID) {
+                        grid.delete(asset.originalGridID, function(err, result) {});
+                    }
+                    asset.originalGridID = fileInfo._id;
+                    processAsset(asset, id);
+                    console.log('' + result + ' document(s) updated');
+                    res.send(asset);
+                });
             }
         });
     });
