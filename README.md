@@ -20,6 +20,7 @@ The basic structure of the application was strongly inspired by the excellent [n
 
 ##Coming soon##
 * don't try to load previews until they have been created
+* pagination
 * validation
 * support for exif data
 * support for larger image files 
