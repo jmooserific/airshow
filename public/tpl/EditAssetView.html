@@ -48,8 +48,8 @@
 
                 <div class="span4">
                     <div class="well" style="width: 180px;text-align: center;width:50%;margin: 0px auto;">
-                        <p><img id="picture" width="180" src="<%= preview === null ? 'images/grey.gif' : 'assets/previews/' + preview %>"/></p>
-                        <p style="color:#999;">To change the picture, drag a new picture from your file system onto the box above.</p>
+                        <p><img id="picture" width="180" src="<%= filename === null ? 'images/grey.gif' : '/assets/original/' +_id %>"/></p>
+                        <p style="color:#999;">Drag a new image onto the box above. (JPEG, < 500KB)</p>
                     </div>
                 </div>
 
@@ -58,8 +58,11 @@
         </fieldset>
 
         <div class="form-actions">
+            <a href="#" class="btn btn cancel">Cancel</a>
             <a href="#" class="btn btn-primary save">Save</a>
-            <a href="#" class="btn btn-danger delete">Delete</a>
+            <% if (Backbone.history.fragment != 'assets/add') { %>
+                <a href="#" class="btn btn-danger delete">Delete</a>
+            <% } %>
         </div>
 
     </form>

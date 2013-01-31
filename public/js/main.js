@@ -15,7 +15,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     home: function (id) {
-        window.location.hash = '#assets';
+        app.navigate('assets', true);
     },
 
 	list: function(page) {
@@ -28,6 +28,9 @@ var AppRouter = Backbone.Router.extend({
     },
 
     assetDetails: function (id) {
+        if (!$('.thumbnails')) {
+            app.navigate('assets', true);
+        }
         var asset = new Asset({_id: id});
         asset.fetch({success: function(){
             $("#lightbox_content").html(new AssetView({model: asset}).el);

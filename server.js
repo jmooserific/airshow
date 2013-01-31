@@ -18,6 +18,9 @@ app.get('/assets/:id', asset.findById);
 app.post('/assets', asset.addAsset);
 app.put('/assets/:id', asset.updateAsset);
 app.delete('/assets/:id', asset.deleteAsset);
+app.get('/assets/original/:id', asset.getOriginal);
+app.get('/assets/preview/:id', asset.getPreview);
+
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));

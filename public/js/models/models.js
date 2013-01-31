@@ -4,42 +4,39 @@ window.Asset = Backbone.Model.extend({
 
     idAttribute: "_id",
 
-    initialize: function () {
-        this.validators = {};
-
-        this.validators.title = function (value) {
-            return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a title"};
-        };        
+    initialize: function () {       
+        
     },
 
-    validateItem: function (key) {
-        return (this.validators[key]) ? this.validators[key](this.get(key)) : {isValid: true};
-    },
-
-    // TODO: Implement Backbone's standard validate() method instead.
-    validateAll: function () {
-
-        var messages = {};
-
-        for (var key in this.validators) {
-            if(this.validators.hasOwnProperty(key)) {
-                var check = this.validators[key](this.get(key));
-                if (check.isValid === false) {
-                    messages[key] = check.message;
+    readFile: function(file){                                                                                                                  
+        var reader = new FileReader();                                                                                                         
+        self = this;                                                                                                                           
+        reader.onloadend = (function(fileToSave, that){                                                                                                   
+            return function(e){
+                var matches = e.target.result.match(/^data:.+\/(.+);base64,(.*)$/);
+                var ext = matches[1];
+                var base64_data = matches[2];
+                
+                var theImage = new Image();
+                theImage.src = e.target.result;
+                theImage.onload = function() {
+                    that.set({filename: fileToSave.name, type: fileToSave.type, originalData: base64_data,
+                        dimensionsX: theImage.width, dimensionsY: theImage.height});
                 }
-            }
-        }
+            };                                                                                                                                 
+        })(file, this);                                                                                                                              
 
-        return _.size(messages) > 0 ? {isValid: false, messages: messages} : {isValid: true};
+        reader.readAsDataURL(file);                                                                                                            
     },
     
     defaults: {
         _id: null,
         title: "",
         description: "",
-        file: null,
         filename: null,
-        preview: null,
+        type: null,
+        originalData: null,
+        previewData: null,
         dimensionsX: 800,
         dimensionsY: 800
     }

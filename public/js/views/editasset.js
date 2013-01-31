@@ -13,6 +13,7 @@ window.EditAssetView = Backbone.View.extend({
         "change"        : "change",
         "click .save"   : "beforeSave",
         "click .delete" : "deleteAsset",
+        "click .cancel" : "cancel",
         "drop #picture" : "dropHandler"
     },
 
@@ -25,32 +26,19 @@ window.EditAssetView = Backbone.View.extend({
         var change = {};
         change[target.name] = target.value;
         this.model.set(change);
-
-        // Run validation rule (if any) on changed item
-        var check = this.model.validateItem(target.id);
-        if (check.isValid === false) {
-            utils.addValidationError(target.id, check.message);
-        } else {
-            utils.removeValidationError(target.id);
-        }
     },
 
     beforeSave: function () {
         var self = this;
-        var check = this.model.validateAll();
-        if (check.isValid === false) {
-            utils.displayValidationErrors(check.messages);
-            return false;
-        }
         this.saveAsset();
         return false;
     },
 
     saveAsset: function () {
-        var self = this;
+        var self = this;        
         console.log('before save');
-        this.model.save(null, {
-            success: function (model) {
+        self.model.save(null, {
+            success: function (model) {                
                 self.render();
                 app.navigate('assets/' + model.id + '/edit', false);
                 utils.showAlert('Success!', 'Asset saved successfully', 'alert-success');
@@ -64,11 +52,14 @@ window.EditAssetView = Backbone.View.extend({
     deleteAsset: function () {
         this.model.destroy({
             success: function () {
-                alert('Asset deleted successfully');
-                window.history.back();
+                app.navigate('assets', true);
             }
         });
         return false;
+    },
+    
+    cancel: function () {
+        app.navigate('assets', true);
     },
 
     dropHandler: function (event) {
@@ -77,6 +68,7 @@ window.EditAssetView = Backbone.View.extend({
         var e = event.originalEvent;
         e.dataTransfer.dropEffect = 'copy';
         this.pictureFile = e.dataTransfer.files[0];
+        this.model.readFile(this.pictureFile);
 
         // Read the image file from the local file system and display it in the img tag
         var reader = new FileReader();
