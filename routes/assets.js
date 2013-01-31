@@ -111,10 +111,13 @@ exports.getOriginal = function(req, res) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, asset) {
             if (asset && asset.originalGridID) {
                 grid.get(asset.originalGridID, function(err, data) {
-                    if (err) throw err;
-                    res.setHeader('Content-Type', asset.type);
-                    res.setHeader('Content-Length', data.length);
-                    res.end(data);
+                    if (data) {
+                        res.setHeader('Content-Type', asset.type);
+                        res.setHeader('Content-Length', data.length);
+                        res.end(data);
+                    } else {
+                        res.send(404);
+                    }
                 });
             } else {
                 res.send(404);
@@ -130,10 +133,13 @@ exports.getPreview = function(req, res) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, asset) {
             if (asset && asset.previewGridID) {
                 grid.get(asset.previewGridID, function(err, data) {
-                    if (err) throw err;
-                    res.setHeader('Content-Type', asset.type);
-                    res.setHeader('Content-Length', data.length);
-                    res.end(data);
+                    if (data) {
+                        res.setHeader('Content-Type', asset.type);
+                        res.setHeader('Content-Length', data.length);
+                        res.end(data);
+                    } else {
+                        res.send(404);
+                    }
                 });
             } else {
                 res.send(404);
