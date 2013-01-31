@@ -22,6 +22,7 @@ app.get('/assets/original/:id', asset.getOriginal);
 app.get('/assets/preview/:id', asset.getPreview);
 
 
-http.createServer(app).listen(app.get('port'), function () {
+http.createServer(app).listen(process.env.PORT || app.get('port'), function () {
+    // the PORT variable will be assigned by Heroku
     console.log("Express server listening on port " + app.get('port'));
 });
