@@ -1,12 +1,27 @@
 ##Airshow##
 
-A _simply_ awesome node.js photo gallery server.
+A _simply_ awesome photo gallery server.
 
-Very much in progress, but the basics work.
+This web application is primarily a vehicle for me to experiment with [Node.js](http://nodejs.org), [Express](http://expressjs.com), [Backbone.js](http://backbonejs.org), [mongoDB](http://www.mongodb.org) and [HTML5](http://en.wikipedia.org/wiki/HTML5)/[CSS3](http://en.wikipedia.org/wiki/CSS3#CSS_3). Perhaps it will be interesting to you, too.
 
+It only works in the most modern of browsers– the latest versions of Safari and Chrome, for example.
 
+The basic structure of the application was strongly inspired by the excellent [nodecellar](https://github.com/ccoenraets/nodecellar) sample application by Christophe Coenraets.
 
-## To run the application on your own Heroku account:##
+##Features##
+* displays a grid of images
+* opens image in a lightbox
+* uses CSS transforms to flip image to show details
+* new images can be uploaded and previews are generated
+* images are stored and served from the database
+
+##Coming soon##
+* validation
+* support for exif data
+* support for larger image files ([GridFS](http://docs.mongodb.org/manual/applications/gridfs/))
+* authentication/authorization
+
+## To install on your own Heroku account:##
 
 1. Install the [Heroku Toolbelt](http://toolbelt.heroku.com)
 
