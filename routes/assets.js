@@ -5,10 +5,6 @@ var connect = require('connect'),
 var database = null,
     BSON = mongo.BSONPure;
 
-mongo.addListener("close", function () {
-    console.log("Closing database connection.");
-});
-
 mongo.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/airshow-assetdatabase', {}, function(error, db) {       
     console.log("Connected to database");
 
