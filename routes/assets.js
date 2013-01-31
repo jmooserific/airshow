@@ -31,7 +31,7 @@ exports.findById = function(req, res) {
 
 exports.findAll = function(req, res) {
     database.collection('assets', function(err, collection) {
-        collection.find().toArray(function(err, items) {
+        collection.find().sort('added', 'desc').toArray(function(err, items) {
             res.send(items);
         });
     });
