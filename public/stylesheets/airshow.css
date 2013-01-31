@@ -96,6 +96,10 @@ img.preview { width: 400px; }
 	transform: rotateY(180deg);
 }
 
+.back .content {
+    margin: 2em;
+}
+
 .back h1 {
     font-size: 18pt;
 }

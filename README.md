@@ -19,6 +19,7 @@ The basic structure of the application was strongly inspired by the excellent [n
 * responsive layout– resize your browser window
 
 ##Coming soon##
+* don't try to load previews until they have been created
 * validation
 * support for exif data
 * support for larger image files 
