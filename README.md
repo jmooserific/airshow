@@ -6,6 +6,8 @@ This web application is primarily a vehicle for me to experiment with [Node.js](
 
 It only works in the most modern of browsers– the latest versions of Safari and Chrome, for example.
 
+Here's a [demo](http://airshow.herokuapp.com).
+
 The basic structure of the application was strongly inspired by the excellent [nodecellar](https://github.com/ccoenraets/nodecellar) sample application by Christophe Coenraets.
 
 ##Features##
