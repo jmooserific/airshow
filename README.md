@@ -16,6 +16,7 @@ The basic structure of the application was strongly inspired by the excellent [n
 * uses CSS transforms to flip image to show details
 * new images can be uploaded and previews are generated
 * images are stored and served from the database
+* responsive layout
 
 ##Coming soon##
 * validation
