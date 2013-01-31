@@ -1,7 +1,7 @@
 function showLightbox() {
-    $('#lightbox .flipper').css( "-webkit-transform","rotateY(90deg)" );
-    $('#lightbox .flipper').css( "-moz-transform","rotateY(90deg)" );
-    $('#lightbox .flipper').css( "transform","rotateY(90deg)" );
+    $('#lightbox .flipper').css( "-webkit-transform","rotateY(-90deg)" );
+    $('#lightbox .flipper').css( "-moz-transform","rotateY(-90deg)" );
+    $('#lightbox .flipper').css( "transform","rotateY(-90deg)" );
     
     $('#lightbox').fadeIn();
     
@@ -36,21 +36,26 @@ function resizeLightbox() {
 
         var scaleWidth = originalWidth / safeWidth;
         var scaleHeight = originalHeight / safeHeight;
-                    
-        if (scaleWidth > scaleHeight) {
-            $('.flip-container, .front, .back').width(originalWidth / scaleWidth);
-            $('.flip-container, .front, .back').height(originalHeight / scaleWidth);
+        
+        if (originalWidth / scaleWidth >= originalWidth) {
+            $('.flip-container, .front, .back').width(originalWidth);
+            $('.flip-container, .front, .back').height(originalHeight);
         } else {
-            $('.flip-container, .front, .back').width(originalWidth / scaleHeight);
-            $('.flip-container, .front, .back').height(originalHeight / scaleHeight);
+            if (scaleWidth > scaleHeight) {
+                $('.flip-container, .front, .back').width(originalWidth / scaleWidth);
+                $('.flip-container, .front, .back').height(originalHeight / scaleWidth);
+            } else {
+                $('.flip-container, .front, .back').width(originalWidth / scaleHeight);
+                $('.flip-container, .front, .back').height(originalHeight / scaleHeight);
+            }
         }
     }
 }
 
 function closeLightbox() {
-    $('#lightbox .flipper').css( "-webkit-transform","rotateY(90deg)" );
-    $('#lightbox .flipper').css( "-moz-transform","rotateY(90deg)" );
-    $('#lightbox .flipper').css( "transform","rotateY(90deg)" );
+    $('#lightbox .flipper').css( "-webkit-transform","rotateY(-90deg)" );
+    $('#lightbox .flipper').css( "-moz-transform","rotateY(-90deg)" );
+    $('#lightbox .flipper').css( "transform","rotateY(-90deg)" );
     $('#lightbox').fadeOut();
 }
 

@@ -19,6 +19,10 @@ body
     color: #aaa;
 }
 
+.toolbar {
+    margin-bottom: 1em;
+}
+
 .thumbnails { text-align: center; }
 img.preview { width: 400px; }
 
