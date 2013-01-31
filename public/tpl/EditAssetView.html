@@ -22,8 +22,7 @@
                         <label for="assetId" class="control-label">Id:</label>
 
                         <div class="controls">
-                            <input id="assetId" name="id" type="text" value="<%= _id === null ? '' : _id %>"
-                                   disabled/>
+                            <input id="assetId" name="id" type="text" value="<%= _id === null ? '' : _id %>" class="input-xlarge" disabled/>
                         </div>
                     </div>
 
@@ -31,7 +30,7 @@
                         <label for="title" class="control-label">Title:</label>
 
                         <div class="controls">
-                            <input type="text" id="name" name="title" value="<%= title %>"/>
+                            <input type="text" id="name" name="title" value="<%= title %>" class="input-xlarge"/>
                             <span class="help-inline"></span>
                         </div>
                     </div>
@@ -40,7 +39,7 @@
                         <label for="description" class="control-label">Description:</label>
 
                         <div class="controls">
-                            <input type="text" id="description" name="description" value="<%= description %>"/>
+                            <textarea id="description" name="description" value="<%= description %>" class="input-xlarge" rows="3"/>
                             <span class="help-inline"></span>
                         </div>
                     </div>
