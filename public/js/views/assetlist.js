@@ -7,8 +7,8 @@ window.AssetListView = Backbone.View.extend({
     render: function () {
         var assets = this.model.models;
         var len = assets.length;
-        var startPos = (this.options.page - 1) * 8;
-        var endPos = Math.min(startPos + 8, len);
+        var startPos = (this.options.page - 1) * 24;
+        var endPos = Math.min(startPos + 24, len);
 
         $(this.el).html('<ul class="thumbnails"></ul>');
 
