@@ -131,7 +131,7 @@ var processAsset = function(asset, id) {
         im.resize({
             srcData: new Buffer(asset.originalData, 'base64'),
             width: 400,
-            customArgs: ['-depth','8','-colorspace','sRGB','-thumbnail','400x400^','-size','400x400','-extent','400x400','xc:white','+swap','-gravity','center','-composite']
+            customArgs: ['-thumbnail','400x400^','-size','400x400','-extent','400x400','-gravity','center']
         }, function(err, stdout, stderr){
             if (err) throw err
             var base64Image = new Buffer(stdout, "binary").toString('base64');
