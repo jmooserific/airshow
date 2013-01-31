@@ -37,7 +37,7 @@ function resizeLightbox() {
         var scaleWidth = originalWidth / safeWidth;
         var scaleHeight = originalHeight / safeHeight;
         
-        if (originalWidth / scaleWidth >= originalWidth) {
+        if (originalWidth / scaleWidth >= originalWidth && originalHeight / scaleHeight >= originalHeight) {
             $('.flip-container, .front, .back').width(originalWidth);
             $('.flip-container, .front, .back').height(originalHeight);
         } else {
