@@ -18,6 +18,11 @@ window.Asset = Backbone.Model.extend({
                 var base64_data = matches[2];
                 
                 var theImage = new Image();
+                
+                if ($('#picture')) {
+                    $('#picture').attr('src', e.target.result);
+                }
+                
                 theImage.src = e.target.result;
                 theImage.onload = function() {
                     that.set({filename: fileToSave.name, type: fileToSave.type, originalData: base64_data,

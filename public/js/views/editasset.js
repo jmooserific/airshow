@@ -69,13 +69,6 @@ window.EditAssetView = Backbone.View.extend({
         e.dataTransfer.dropEffect = 'copy';
         this.pictureFile = e.dataTransfer.files[0];
         this.model.readFile(this.pictureFile);
-
-        // Read the image file from the local file system and display it in the img tag
-        var reader = new FileReader();
-        reader.onloadend = function () {
-            $('#picture').attr('src', reader.result);
-        };
-        reader.readAsDataURL(this.pictureFile);
     }
 
 });
