@@ -45,7 +45,8 @@ window.Asset = Backbone.Model.extend({
         previewGridID: null,
         dimensionsX: 800,
         dimensionsY: 800,
-        added: new Date()
+        added: new Date(),
+        modified: new Date()
     }
 });
 
