@@ -20,7 +20,12 @@ body
 	color: #aaa;
 }
 
-.toolbar { margin-bottom: 1em; }
+.toolbar
+{
+	margin-bottom: 1em;
+	text-align: right;
+}
+
 footer { font-size: 10pt; }
 .thumbnails { text-align: center; }
 img.preview { width: 400px; }
