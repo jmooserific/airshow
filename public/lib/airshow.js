@@ -53,9 +53,9 @@ function resizeLightbox() {
 }
 
 function closeLightbox() {
-    $('#lightbox .flipper').css( "-webkit-transform","rotateY(-90deg)" );
-    $('#lightbox .flipper').css( "-moz-transform","rotateY(-90deg)" );
-    $('#lightbox .flipper').css( "transform","rotateY(-90deg)" );
+    $('#lightbox .flipper').css( "-webkit-transform","rotateY(90deg)" );
+    $('#lightbox .flipper').css( "-moz-transform","rotateY(90deg)" );
+    $('#lightbox .flipper').css( "transform","rotateY(90deg)" );
     $('#lightbox').fadeOut();
 }
 
