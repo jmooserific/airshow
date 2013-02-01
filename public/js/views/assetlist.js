@@ -5,18 +5,21 @@ window.AssetListView = Backbone.View.extend({
     },
 
     render: function () {
+        var perPage = 12;
         var assets = this.model.models;
         var len = assets.length;
-        var startPos = (this.options.page - 1) * 24;
-        var endPos = Math.min(startPos + 24, len);
+        var startPos = (this.options.page - 1) * perPage;
+        var endPos = Math.min(startPos + perPage, len);
 
         $(this.el).html('<ul class="thumbnails"></ul>');
 
         for (var i = startPos; i < endPos; i++) {
             $('.thumbnails', this.el).append(new AssetListItemView({model: assets[i]}).render().el);
         }
-
-        //$(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
+        
+        if (len > perPage) {
+            $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
+        }
 
         return this;
     }

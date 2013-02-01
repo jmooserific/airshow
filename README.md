@@ -11,7 +11,7 @@ Here's a [demo](http://airshow.herokuapp.com).
 The basic structure of the application was strongly inspired by the excellent [nodecellar](https://github.com/ccoenraets/nodecellar) sample application by Christophe Coenraets.
 
 ##Features##
-* displays a grid of images
+* displays a paginated grid of images
 * opens image in a lightbox
 * uses CSS transforms to flip image to show details
 * new images can be uploaded and previews are generated
@@ -20,7 +20,6 @@ The basic structure of the application was strongly inspired by the excellent [n
 
 ##Coming soon##
 * don't try to load previews until they have been created
-* pagination
 * validation
 * support for exif data
 * support for larger image files 
