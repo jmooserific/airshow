@@ -1,5 +1,4 @@
-var connect = require('connect'),
-    mongo = require('mongodb'),
+var mongo = require('mongodb'),
     im = require('imagemagick');
 
 var database = null,
