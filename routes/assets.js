@@ -65,6 +65,7 @@ exports.updateAsset = function(req, res) {
     console.log('Updating asset: ' + id);
     var buffer = new Buffer(asset.originalData, 'base64');
     asset.originalData = null;
+    asset.modified = new Date();
     database.collection('assets', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, asset, {safe:true}, function(err, result) {
             if (err) {
@@ -120,9 +121,8 @@ exports.getOriginal = function(req, res) {
             if (asset && asset.originalGridID) {
                 grid.get(asset.originalGridID, function(err, data) {
                     if (data) {
-                        res.setHeader('Content-Type', asset.type);
-                        res.setHeader('Content-Length', data.length);
-                        res.end(data);
+                        res.writeHead(200, {'Content-Type': asset.type, 'Content-Length': data.length });
+                        res.end(data, 'binary');
                     } else {
                         res.send(404);
                     }
@@ -142,9 +142,8 @@ exports.getPreview = function(req, res) {
             if (asset && asset.previewGridID) {
                 grid.get(asset.previewGridID, function(err, data) {
                     if (data) {
-                        res.setHeader('Content-Type', asset.type);
-                        res.setHeader('Content-Length', data.length);
-                        res.end(data);
+                        res.writeHead(200, {'Content-Type': 'image/jpeg', 'Content-Length': data.length });
+                        res.end(data, 'binary');
                     } else {
                         res.send(404);
                     }
