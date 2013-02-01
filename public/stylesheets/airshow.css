@@ -1,7 +1,7 @@
 body
 {
 	font-weight: 200;
-	font-size 12pt: ;
+	font-size 12pt;
 	color: #aaa;
 }
 
@@ -17,14 +17,23 @@ body
 .page-header h1 a, .page-header h1 a:hover
 {
 	text-decoration: none;
-	color: #aaa;
+    color: #aaa;
 }
 
-.toolbar { margin-bottom: 1em; }
-footer { font-size: 10pt; }
+.toolbar {
+    margin-bottom: 1em;
+}
+
+footer {
+    font-size: 10pt;
+}
+
 .thumbnails { text-align: center; }
 img.preview { width: 400px; }
-img { background-color: #aaa; }
+
+img {
+    background-color: #aaa;
+}
 
 #lightbox
 {
@@ -44,16 +53,18 @@ img { background-color: #aaa; }
 	-webkit-perspective: 1000;
 	-moz-perspective: 1000;
 	perspective: 1000;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
+	position:absolute; 
+    top: 0; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    margin: auto; 
 }
 
 /* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper { }
+.flip-container:hover .flipper, .flip-container.hover .flipper
+{
+}
 
 /* flip speed goes here */
 .flipper
@@ -71,7 +82,7 @@ img { background-color: #aaa; }
 /* hide back of pane during swap */
 .front, .back
 {
-	background: white;
+    background: white;
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
@@ -94,5 +105,10 @@ img { background-color: #aaa; }
 	transform: rotateY(180deg);
 }
 
-.back .content { margin: 2em; }
-.back h1 { font-size: 18pt; }
+.back .content {
+    margin: 2em;
+}
+
+.back h1 {
+    font-size: 18pt;
+}
