@@ -46,7 +46,7 @@ function resizeLightbox() {
                 $('.flip-container, .front, .back').height(originalHeight / scaleWidth);
             } else {
                 $('.flip-container, .front, .back').width(originalWidth / scaleHeight);
-                $('.flip-container, .front, .back').height(originalHeight / scaleHeight);
+                $('.flip-container, .front, .back').height(originalHeight / scaleHeight - 1);
             }
         }
     }
