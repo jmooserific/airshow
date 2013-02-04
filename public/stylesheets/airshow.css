@@ -20,6 +20,7 @@ color: #aaa;
 }
 
 .toolbar {
+margin-top: -65px;
 margin-bottom: 1em;
 text-align: right;
 }
