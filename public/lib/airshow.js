@@ -9,7 +9,7 @@ function showLightbox() {
     $('#lightbox .flipper').css( "-moz-transform","rotateY(0deg)" );
     $('#lightbox .flipper').css( "transform","rotateY(0deg)" );
     
-    resizeLightbox();
+    resizeElements();
     $('#lightbox .front').click(function(event) {
         $('#lightbox .flipper').css( "-webkit-transform","rotateY(180deg)" );
         $('#lightbox .flipper').css( "-moz-transform","rotateY(180deg)" );
@@ -26,7 +26,7 @@ function showLightbox() {
     });
 }
 
-function resizeLightbox() {
+function resizeElements() {
     if ($('#lightbox .front img') && $('#lightbox .front img').attr('data-width') && $('#lightbox .front img').attr('data-width') && $('#lightbox').is(':visible')) {
         var originalWidth = $('#lightbox .front img').attr('data-width');
         var originalHeight = $('#lightbox .front img').attr('data-height');
