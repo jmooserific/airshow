@@ -14,6 +14,7 @@ app.configure(function () {
 });
 
 app.get('/assets', asset.findAll);
+app.post('/newassets', asset.createAssets);
 app.get('/assets/:id', asset.findById);
 app.post('/assets', asset.addAsset);
 app.put('/assets/:id', asset.updateAsset);

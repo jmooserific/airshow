@@ -6,7 +6,8 @@ var AppRouter = Backbone.Router.extend({
         "assets/page/:page"	 : "list",
         "assets/add"         : "addAsset",
         "assets/:id/edit"    : "editAsset",
-        "assets/:id"         : "assetDetails"
+        "assets/:id"         : "assetDetails",
+		"newassets"			 : "newAssets"
     },
 
     initialize: function () {
@@ -26,6 +27,12 @@ var AppRouter = Backbone.Router.extend({
         }});
         this.headerView.selectMenuItem('home-menu');
     },
+
+	newAssets: function() {
+        $('#content').html(new NewAssetsView().el);
+		$(".dropzone").dropzone();
+        this.headerView.selectMenuItem();
+	},
 
     assetDetails: function (id) {
         if (!$('.thumbnails')) {
@@ -55,7 +62,7 @@ var AppRouter = Backbone.Router.extend({
 	}
 });
 
-utils.loadTemplate(['HeaderView', 'AssetView', 'EditAssetView', 'AssetListItemView'], function() {
+utils.loadTemplate(['HeaderView', 'AssetView', 'EditAssetView', 'AssetListItemView', 'NewAssetsView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });
