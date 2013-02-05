@@ -7,7 +7,7 @@
 .dropzone {
   position: relative;
   min-height: 360px;
-  border: 1px solid rgba(0,0,0,0.03);
+  border: 3px dashed rgba(0,0,0,0.03);
   -webkit-border-radius: 4px;
   border-radius: 4px;
   background: rgba(0,0,0,0.03);
@@ -36,17 +36,15 @@
   -o-transition: opacity 0.3s ease-in-out;
   -ms-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
-  background: url("../images/spritemap.png") no-repeat 0 -108px;
   position: absolute;
   width: 168px;
-  height: 157px;
+  height: 12pt;
   margin-left: -84px;
-  margin-top: -78.5px;
+  margin-top: -6pt;
   top: 50%;
   left: 50%;
 }
 .dropzone .message span {
-  display: none;
 }
 .dropzone.browser-not-supported {
   padding: 30px;
@@ -83,7 +81,7 @@
 }
 .dropzone .preview .details .size {
   color: #666;
-  font: 500 31px/31px "League Gothic", sans-serif;
+  font: 500 31px/31px;
   position: absolute;
   bottom: 2px;
   left: 17px;
