@@ -60,9 +60,10 @@ exports.createAssets = function(req, res) {
 		//file.id   // the ObjectId for this file
 		asset.originalGridID = file.id;
 		asset.title = file.name;
+        asset.filename = file.name;
 		asset.type = file.type;
-		asset.added = new Date();
-		asset.modified = new Date();
+		asset.added = (new Date()).getTime();
+		asset.modified = (new Date()).getTime();
 		database.collection('assets', function(err, collection) {
             collection.insert(asset, {safe:true}, function(err, result) {
                 if (err) {
@@ -77,52 +78,20 @@ exports.createAssets = function(req, res) {
 	});
 }
 
-exports.addAsset = function(req, res) {
-    var asset = req.body;
-    
-    grid.put(new Buffer(asset.originalData, 'base64'), {metadata:{type: asset.type}, content_type: 'binary'}, function(err, fileInfo) {
-        if (err) throw err;
-        asset.originalGridID = fileInfo._id;
-        asset.originalData = null;
-        //console.log('Adding asset: ' + JSON.stringify(asset));
-        database.collection('assets', function(err, collection) {
-            collection.insert(asset, {safe:true}, function(err, result) {
-                if (err) {
-                    res.send({'error':'An error has occurred'});
-                } else {
-                    processAsset(result[0]);
-                    //console.log('Success: ' + JSON.stringify(result[0]));
-                    res.send(result[0]);
-                }
-            });
-        });
-    });
-}
-
 exports.updateAsset = function(req, res) {
     var id = req.params.id;
     var asset = req.body;
     delete asset._id;
     console.log('Updating asset: ' + id);
-    var buffer = new Buffer(asset.originalData, 'base64');
-    asset.originalData = null;
-    asset.modified = new Date();
+    asset.modified = (new Date()).getTime();
     database.collection('assets', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, asset, {safe:true}, function(err, result) {
             if (err) {
                 console.log('Error updating asset: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
-                grid.put(buffer, {metadata:{type: asset.type}, content_type: 'binary'}, function(err, fileInfo) {
-                    if (err) throw err;
-                    if (asset.originalGridID) {
-                        grid.delete(asset.originalGridID, function(err, result) {});
-                    }
-                    asset.originalGridID = fileInfo._id;
-                    processAsset(asset, id);
-                    console.log('' + result + ' document(s) updated');
-                    res.send(asset);
-                });
+                console.log('' + result + ' document(s) updated');
+                res.send(asset);
             }
         });
     });
@@ -160,11 +129,12 @@ exports.getOriginal = function(req, res) {
     database.collection('assets', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, asset) {
             if (asset && asset.originalGridID) {
-                grid.get(asset.originalGridID, function(err, data) {
+                grid.get(new BSON.ObjectID(asset.originalGridID), function(err, data) {
                     if (data) {
                         res.writeHead(200, {'Content-Type': asset.type, 'Content-Length': data.length });
                         res.end(data, 'binary');
                     } else {
+                        console.log('Error:' + err);
                         res.send(404);
                     }
                 });
@@ -181,11 +151,12 @@ exports.getPreview = function(req, res) {
     database.collection('assets', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, asset) {
             if (asset && asset.previewGridID) {
-                grid.get(asset.previewGridID, function(err, data) {
+                grid.get(new BSON.ObjectID(asset.previewGridID), function(err, data) {
                     if (data) {
                         res.writeHead(200, {'Content-Type': 'image/jpeg', 'Content-Length': data.length });
                         res.end(data, 'binary');
                     } else {
+                        console.log('Error:' + err);
                         res.send(404);
                     }
                 });

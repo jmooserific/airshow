@@ -14,7 +14,6 @@ window.EditAssetView = Backbone.View.extend({
         "click .save"   : "beforeSave",
         "click .delete" : "deleteAsset",
         "click .cancel" : "cancel",
-        "drop #picture" : "dropHandler"
     },
 
     change: function (event) {
@@ -60,15 +59,5 @@ window.EditAssetView = Backbone.View.extend({
     
     cancel: function () {
         app.navigate('assets', true);
-    },
-
-    dropHandler: function (event) {
-        event.stopPropagation();
-        event.preventDefault();
-        var e = event.originalEvent;
-        e.dataTransfer.dropEffect = 'copy';
-        this.pictureFile = e.dataTransfer.files[0];
-        this.model.readFile(this.pictureFile);
     }
-
 });

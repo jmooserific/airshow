@@ -46,10 +46,7 @@
                 </div>
 
                 <div class="span4">
-                    <div class="well" style="width: 180px;text-align: center;width:50%;margin: 0px auto;">
-                        <p><img id="picture" width="180" src="<%= filename === null ? 'images/grey.gif' : '/assets/original/' +_id %>"/></p>
-                        <p style="color:#999;">Drag a new image onto the box above. (JPEG, < 500KB)</p>
-                    </div>
+                    <img id="picture" width="180" src="/assets/preview/<%= _id %>"/>
                 </div>
 
             </div>
