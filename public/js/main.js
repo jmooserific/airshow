@@ -47,9 +47,9 @@ var AppRouter = Backbone.Router.extend({
     },
     
     editAsset: function (id) {
+		closeLightbox();
         var asset = new Asset({_id: id});
         asset.fetch({success: function(){
-            closeLightbox();
             $("#content").html(new EditAssetView({model: asset}).el);
         }});
         this.headerView.selectMenuItem();
