@@ -92,6 +92,8 @@ left: 0;
 box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+min-width: 200px;
+min-height: 200px;
 }
 
 /* front pane, placed above back */
