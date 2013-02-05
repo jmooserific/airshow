@@ -1,7 +1,8 @@
 var mongo = require('mongodb'),
     im = require('imagemagick'),
 	gridform = require('gridform'),
-	formidable = require('formidable');
+	formidable = require('formidable'),
+	ExifImage = require('exif');
 
 var database = null,
     grid = null,
@@ -48,7 +49,6 @@ exports.createAssets = function(req, res) {
 		
 		// use files and fields as you do today
 		var file = files.file;
-		console.log(files);
 		//file.name // the uploaded file name
 		//file.type // file type per [mime](https://github.com/bentomas/node-mime)
 		//file.size // uploaded file size (file length in GridFS) named "size" for compatibility
@@ -208,6 +208,7 @@ var processAsset = function(asset, id) {
         console.log('Creating preview for ' + id);
         grid.get(asset.originalGridID, function(err, data) {
             if (err) throw err;
+			
             im.resize({
                 srcData: data,
                 width: 400,

@@ -11,7 +11,8 @@
         "mongodb": "1.1.8",
         "imagemagick": "*",
 		"formidable": "*",
-		"gridform": "*"
+		"gridform": "*",
+		"exif":	"*"
     },
     "engines": {
         "node": "0.8.*",

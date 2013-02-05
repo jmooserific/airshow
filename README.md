@@ -14,7 +14,7 @@ The basic structure of the application was strongly inspired by the excellent [n
 * displays a paginated grid of images
 * opens image in a lightbox
 * uses CSS transforms to flip image to show details
-* new images can be uploaded and previews are generated
+* new images can be uploaded via drag and drop in batches and previews are generated
 * images are stored and served from the database ([GridFS](http://docs.mongodb.org/manual/applications/gridfs/))
 * responsive layout– resize your browser window
 
