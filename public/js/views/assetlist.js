@@ -22,6 +22,10 @@ window.AssetListView = Backbone.View.extend({
         for (var i = startPos; i < endPos; i++) {
             $('.thumbnails', this.el).append(new AssetListItemView({model: assets[i]}).render().el);
         }
+
+		if (len == 0) {
+			$(this.el).html('<p class="no-images">Please <a href="#newassets">add some images</a>.</p>');
+		}
         
         return this;
     }
