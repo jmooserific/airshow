@@ -58,7 +58,7 @@ exports.createAssets = function(req, res) {
 		// files contain additional gridfs info
 		//file.root // the root of the files collection used in MongoDB ('fs' here means the full collection in mongo is named 'fs.files')
 		//file.id   // the ObjectId for this file
-		asset.originalGridID = file.id;
+		asset.originalGridID = file.id.toString();
 		asset.title = file.name;
         asset.filename = file.name;
 		asset.type = file.type;
@@ -177,7 +177,7 @@ var processAsset = function(asset, id) {
     console.log('Processing asset for ' + id);
     if (asset.originalGridID) {
         console.log('Creating preview for ' + id);
-        grid.get(asset.originalGridID, function(err, data) {
+        grid.get(new BSON.ObjectID(asset.originalGridID), function(err, data) {
             if (err) throw err;
 			
             im.resize({
@@ -188,7 +188,7 @@ var processAsset = function(asset, id) {
                 if (err) throw err;
                 grid.put(new Buffer(stdout, "binary"), {metadata:{type: asset.type}, content_type: 'binary'}, function(err, fileInfo) {
                     if (err) throw err;
-                    asset.previewGridID = fileInfo._id;
+                    asset.previewGridID = fileInfo._id.toString();
                     asset.hasPreview = true;
                     delete asset._id;
                     database.collection('assets', function(err, collection) {
