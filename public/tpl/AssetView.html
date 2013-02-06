@@ -6,9 +6,12 @@
         <div class="back">
             <div class="content">
                 <h1><%= title %></h1>
+                <img src="/assets/preview/<%= _id %>">
                 <p><%= description %></p>
-                <a href="/assets/download/<%= _id %>" class="btn btn-small">Download</a>
-                <a href="#assets/<%= _id %>/edit" class="btn btn-small">Edit</a>
+                <div class="form-actions">
+                    <a href="/assets/download/<%= _id %>" class="btn btn-small">Download</a>
+                    <a href="#assets/<%= _id %>/edit" class="btn btn-small">Edit</a>
+                </div>
             </div>
         </div>
     </div>

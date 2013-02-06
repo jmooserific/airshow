@@ -115,10 +115,32 @@ img { background-color: #aaa; }
 	-webkit-transform: rotateY(180deg);
 	-moz-transform: rotateY(180deg);
 	transform: rotateY(180deg);
+	overflow: scroll;
 }
 
-.back .content { margin: 2em; }
-.back h1 { font-size: 18pt; }
+.back .content
+{
+	margin: 2em;
+	text-align: left;
+	position: relative;
+}
+
+.back h1
+{
+	height: 100px;
+	font-size: 18pt;
+	line-height: 100px;
+}
+
+.back img
+{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100px;
+}
+
+.back .form-actions { text-align: center; }
 
 .shadow
 {
