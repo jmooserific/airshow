@@ -11,7 +11,7 @@ app.configure(function () {
     app.use(express.compress()),
     app.use(express.json()),
     app.use(express.urlencoded()),
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400 })); // one day
 });
 
 app.get('/assets', asset.findAll);
