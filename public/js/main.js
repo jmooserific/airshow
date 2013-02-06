@@ -22,8 +22,10 @@ var AppRouter = Backbone.Router.extend({
 	list: function(page) {
         var p = page ? parseInt(page, 10) : 1;
         var assetList = new AssetCollection();
+        $(".thumbnails").fadeOut();
         assetList.fetch({success: function(){
             $("#content").html(new AssetListView({model: assetList, page: p}).el);
+            $(".thumbnails").fadeIn();
         }});
         this.headerView.selectMenuItem('home-menu');
     },

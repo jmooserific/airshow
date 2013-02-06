@@ -17,7 +17,7 @@ window.AssetListView = Backbone.View.extend({
             $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
         }
 		
-        $(this.el).append('<ul class="thumbnails"></ul>');
+        $(this.el).append('<ul class="thumbnails" style="display: none;"></ul>');
 
         for (var i = startPos; i < endPos; i++) {
             $('.thumbnails', this.el).append(new AssetListItemView({model: assets[i]}).render().el);
