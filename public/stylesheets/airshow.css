@@ -127,16 +127,17 @@ img { background-color: #aaa; }
 
 .back h1
 {
-	height: 100px;
+    height: 100px;
 	font-size: 18pt;
-	line-height: 100px;
+	line-height: 18pt;
+	margin-bottom: 1em;
 }
 
 .back img
 {
-	position: absolute;
-	right: 0;
-	top: 0;
+	float: right;
+	margin-left: 1em;
+	margin-bottom: 1em;
 	height: 100px;
 }
 
