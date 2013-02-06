@@ -62,8 +62,9 @@ exports.createAssets = function(req, res) {
 		asset.title = file.name;
         asset.filename = file.name;
 		asset.type = file.type;
-		asset.added = (new Date()).getTime();
-		asset.modified = (new Date()).getTime();
+		asset.added = new Date().toString();
+        asset.modified = new Date().toString();
+        asset.etag = new Date().getTime();
 		database.collection('assets', function(err, collection) {
             collection.insert(asset, {safe:true}, function(err, result) {
                 if (err) {
@@ -83,7 +84,7 @@ exports.updateAsset = function(req, res) {
     var asset = req.body;
     delete asset._id;
     console.log('Updating asset: ' + id);
-    asset.modified = (new Date()).getTime();
+    asset.modified = new Date().toString();
     database.collection('assets', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, asset, {safe:true}, function(err, result) {
             if (err) {
@@ -126,49 +127,42 @@ exports.deleteAsset = function(req, res) {
 exports.getOriginal = function(req, res) {
     var id = req.params.id;
     console.log('Serving original for asset: ' + id);
-    database.collection('assets', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, asset) {
-            if (asset && asset.originalGridID) {
-                grid.get(new BSON.ObjectID(asset.originalGridID), function(err, data) {
-                    if (data) {
-                        res.writeHead(200, {'Content-Type': asset.type, 'Content-Length': data.length });
-                        res.end(data, 'binary');
-                    } else {
-                        console.log('Error:' + err);
-                        res.send(404);
-                    }
-                });
-            } else {
-                res.send(404);
-            }
-        });
-    });
+    sendImage(req, res, id, false);
 }
 
 exports.getPreview = function(req, res) {
     var id = req.params.id;
     console.log('Serving preview for asset: ' + id);
+    sendImage(req, res, id, true);
+}
+
+
+// ============================================
+
+var sendImage = function(req, res, id, isPreview) {
     database.collection('assets', function(err, collection) {
         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, asset) {
-            if (asset && asset.previewGridID) {
-                grid.get(new BSON.ObjectID(asset.previewGridID), function(err, data) {
-                    if (data) {
-                        res.writeHead(200, {'Content-Type': 'image/jpeg', 'Content-Length': data.length });
-                        res.end(data, 'binary');
-                    } else {
-                        console.log('Error:' + err);
-                        res.send(404);
-                    }
-                });
+            if (asset) {
+                if(req.headers['if-none-match'] === asset.etag) {
+                    res.statusCode = 304;
+                    res.end();
+                } else {
+                    grid.get(new BSON.ObjectID((isPreview ? asset.previewGridID : asset.originalGridID )), function(err, data) {
+                        if (data) {
+                            res.writeHead(200, {'Content-Type': (isPreview ? 'image/jpeg' : asset.type ), 'Content-Length': data.length, 'Last-Modified': asset.modified, 'Cache-Control': 'public, max-age=31536000','ETag': data.length });
+                            res.end(data, 'binary');
+                        } else {
+                            console.log('Error:' + err);
+                            res.send(404);
+                        }
+                    });
+                }
             } else {
                 res.send(404);
             }
         });
     });
 }
-
-
-// ============================================
 
 var processAsset = function(asset, id) {
     if (asset._id) {
@@ -182,8 +176,9 @@ var processAsset = function(asset, id) {
 			
             im.resize({
                 srcData: data,
+                quality: 0.5,
                 width: 400,
-                customArgs: ['-thumbnail','400x400^','-size','400x400','-extent','400x400','-gravity','center']
+                customArgs: ['-thumbnail','400x400^','-size','400x400','-extent','400x400','-gravity','center','-strip']
             }, function(err, stdout, stderr){
                 if (err) throw err;
                 grid.put(new Buffer(stdout, "binary"), {metadata:{type: asset.type}, content_type: 'binary'}, function(err, fileInfo) {

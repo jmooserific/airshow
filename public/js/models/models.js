@@ -14,10 +14,11 @@ window.Asset = Backbone.Model.extend({
         description: "",
         filename: null,
         type: null,
+        etag: null,
         originalGridID: null,
         previewGridID: null,
-        added: (new Date()).getTime(),
-        modified: (new Date()).getTime()
+        added: new Date().toString(),
+        modified: new Date().toString()
     }
 });
 
