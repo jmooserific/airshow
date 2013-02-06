@@ -1,146 +1,155 @@
-body {
-font-weight: 200;
-	font-size 12pt: ;
-color: #aaa;
+body
+{
+	font-weight: 200;
+	font-size: 12pt;
+	color: #aaa;
 }
 
-.page-header {
-border-bottom: none;
+.page-header { border-bottom: none; }
+
+.page-header h1
+{
+	font-weight: inherit;
+	font-size: 70px;
+	text-transform: lowercase;
 }
 
-.page-header h1 {
-font-weight: inherit;
-font-size: 70px;
-text-transform: lowercase;
+.page-header h1 a, .page-header h1 a:hover
+{
+	text-decoration: none;
+	color: #aaa;
 }
 
-.page-header h1 a, .page-header h1 a:hover {
-text-decoration: none;
-color: #aaa;
+#content { min-height: 380px; }
+.header { min-height: 50px; }
+
+.toolbar
+{
+	margin-top: -65px;
+	margin-bottom: 1em;
+	text-align: right;
 }
 
-.toolbar {
-margin-top: -65px;
-margin-bottom: 1em;
-text-align: right;
+footer { font-size: 10pt; }
+
+.thumbnails
+{
+	text-align: center;
+	min-height: 380px;
 }
 
-footer {
-font-size: 10pt;
-}
-.thumbnails {
-text-align: center;
-min-height: 380px;
-}
-p.no-images {text-align: center; margin: 100px;}
-img.preview {
-width: 400px;
-}
-img {
-background-color: #aaa;
+p.no-images
+{
+	text-align: center;
+	margin: 100px;
 }
 
-#lightbox {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.5);
-text-align: center;
-z-index: 0;
+img.preview { width: 400px; }
+img { background-color: #aaa; }
+
+#lightbox
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	z-index: 0;
 }
 
 /* entire container, keeps perspective */
-.flip-container {
--webkit-perspective: 1000;
--moz-perspective: 1000;
-perspective: 1000;
-position: absolute;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-margin: auto;
+.flip-container
+{
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	perspective: 1000;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 
 /* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-}
+.flip-container:hover .flipper, .flip-container.hover .flipper { }
 
 /* flip speed goes here */
-.flipper {
--webkit-transition: 0.6s;
--webkit-transform-style: preserve-3d;
--moz-transition: 0.6s;
--moz-transform-style: preserve-3d;
-transition: 0.6s;
-transform-style: preserve-3d;
-position: relative;
-z-index: 1;
+.flipper
+{
+	-webkit-transition: 0.6s;
+	-webkit-transform-style: preserve-3d;
+	-moz-transition: 0.6s;
+	-moz-transform-style: preserve-3d;
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+	z-index: 1;
 }
 
 /* hide back of pane during swap */
-.front, .back {
-background: white;
--webkit-backface-visibility: hidden;
--moz-backface-visibility: hidden;
-backface-visibility: hidden;
-position: absolute;
-top: 0;
-left: 0;
-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
--webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
--moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-min-width: 200px;
-min-height: 200px;
+.front, .back
+{
+	background: white;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+	-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+	min-width: 200px;
+	min-height: 200px;
 }
 
 /* front pane, placed above back */
-.front {
-z-index: 2;
-}
+.front { z-index: 2; }
 
 /* back, initially hidden pane */
-.back {
--webkit-transform: rotateY(180deg);
--moz-transform: rotateY(180deg);
-transform: rotateY(180deg);
+.back
+{
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
-.back .content {
-margin: 2em;
-}
-.back h1 {
-font-size: 18pt;
+.back .content { margin: 2em; }
+.back h1 { font-size: 18pt; }
+
+.shadow
+{
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
-.shadow {
--webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
--moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
--webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
--moz-transition: border linear 0.2s, box-shadow linear 0.2s;
-transition: border linear 0.2s, box-shadow linear 0.2s;
+.shadow:hover
+{
+	border-color: rgba(82, 168, 236, 0.8);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
 }
 
-.shadow:hover {
-border-color: rgba(82, 168, 236, 0.8);
--webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
--moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+.pagination ul, .pagination ul li a, .pagination ul li.active a, .pagination ul li a:hover
+{
+	border: none;
+	background: none;
+	padding: 5px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
-.pagination ul, .pagination ul li a, .pagination ul li.active a, .pagination ul li a:hover {
-border: none;
-background: none;
-padding: 5px;
--webkit-box-shadow: none;
--moz-box-shadow: none;
-box-shadow: none;
-}
-
-.pagination a {
-width: 10px;
-color: #aaa;
+.pagination a
+{
+	width: 10px;
+	color: #aaa;
 }
