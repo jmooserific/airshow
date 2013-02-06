@@ -138,11 +138,16 @@ img { background-color: #aaa; }
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
 }
 
-.pagination { height: 24px; }
+.pagination
+{
+	height: 24px;
+	margin-top: -30px;
+	margin-bottom: 30px;
+}
 
 .pagination ul, .pagination ul li a, .pagination ul li.active a, .pagination ul li a:hover
 {
-	line-height: 12px;
+	line-height: inherit;
 	border: none;
 	background: none;
 	padding: 10px;
