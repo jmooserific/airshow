@@ -21,6 +21,7 @@ app.put('/assets/:id', asset.updateAsset);
 app.delete('/assets/:id', asset.deleteAsset);
 app.get('/assets/original/:id', asset.getOriginal);
 app.get('/assets/preview/:id', asset.getPreview);
+app.get('/assets/download/:id', asset.download);
 
 
 http.createServer(app).listen(process.env.PORT || app.get('port'), function () {

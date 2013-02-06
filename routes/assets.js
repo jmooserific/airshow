@@ -136,6 +136,12 @@ exports.getPreview = function(req, res) {
     sendImage(req, res, id, true);
 }
 
+exports.download = function(req, res) {
+    var id = req.params.id;
+    console.log('Serving download for asset: ' + id);
+    downloadImage(res, id);
+}
+
 
 // ============================================
 
@@ -149,7 +155,7 @@ var sendImage = function(req, res, id, isPreview) {
                 } else {
                     grid.get(new BSON.ObjectID((isPreview ? asset.previewGridID : asset.originalGridID )), function(err, data) {
                         if (data) {
-                            res.writeHead(200, {'Content-Type': (isPreview ? 'image/jpeg' : asset.type ), 'Content-Length': data.length, 'Last-Modified': asset.modified, 'Cache-Control': 'public, max-age=31536000','ETag': data.length });
+                            res.writeHead(200, {'Content-Type': (isPreview ? 'image/jpeg' : asset.type ), 'Content-Length': data.length, 'Last-Modified': asset.modified, 'Cache-Control': 'public, max-age=31536000','ETag': asset.etag });
                             res.end(data, 'binary');
                         } else {
                             console.log('Error:' + err);
@@ -157,6 +163,26 @@ var sendImage = function(req, res, id, isPreview) {
                         }
                     });
                 }
+            } else {
+                res.send(404);
+            }
+        });
+    });
+}
+
+var downloadImage = function(res, id) {
+    database.collection('assets', function(err, collection) {
+        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, asset) {
+            if (asset) {
+                grid.get(new BSON.ObjectID(asset.originalGridID), function(err, data) {
+                    if (data) {
+                        res.writeHead(200, {'Content-Type': asset.type, 'Content-Length': data.length, 'Last-Modified': asset.modified, 'Content-disposition': 'attachment; filename=' + asset.filename });
+                        res.end(data, 'binary');
+                    } else {
+                        console.log('Error:' + err);
+                        res.send(404);
+                    }
+                });
             } else {
                 res.send(404);
             }
