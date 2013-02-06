@@ -37,13 +37,14 @@ var AppRouter = Backbone.Router.extend({
 	},
 
     assetDetails: function (id) {
-        if (!$('.thumbnails')) {
+        if ($('.thumbnails').length == 0) {
+            var route = Backbone.history.fragment;
             app.navigate('assets', true);
+            app.navigate(route, {trigger: false, replace: true});
         }
         var asset = new Asset({_id: id});
         asset.fetch({success: function(){
             $("#lightbox_content").html(new AssetView({model: asset}).el);
-            
             showLightbox();
         }});
     },
