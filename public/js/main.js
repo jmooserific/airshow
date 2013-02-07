@@ -54,6 +54,7 @@ var AppRouter = Backbone.Router.extend({
         var asset = new Asset({_id: id});
         asset.fetch({success: function(){
             $("#content").html(new EditAssetView({model: asset}).el);
+            CKEDITOR.replace( 'description' );
         }});
         this.headerView.selectMenuItem();
     },

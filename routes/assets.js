@@ -2,7 +2,8 @@ var mongo = require('mongodb'),
     im = require('imagemagick'),
 	gridform = require('gridform'),
 	formidable = require('formidable'),
-	ExifImage = require('exif');
+	ExifImage = require('exif'),
+	sanitizer = require('sanitizer');
 
 var database = null,
     grid = null,
@@ -64,7 +65,7 @@ exports.createAssets = function(req, res) {
 		asset.type = file.type;
 		asset.added = new Date().toString();
         asset.modified = new Date().toString();
-        asset.etag = new Date().getTime();
+        asset.etag = Math.floor(new Date().getTime());
 		database.collection('assets', function(err, collection) {
             collection.insert(asset, {safe:true}, function(err, result) {
                 if (err) {
@@ -82,9 +83,19 @@ exports.createAssets = function(req, res) {
 exports.updateAsset = function(req, res) {
     var id = req.params.id;
     var asset = req.body;
-    delete asset._id;
+    
     console.log('Updating asset: ' + id);
+    delete asset._id;
+
+    //sanitize properties
+    for (var property in asset) {
+        asset[property] = sanitizer.sanitize(asset[property]);
+    }
+    
     asset.modified = new Date().toString();
+    asset.hasPreview = true; //gets saved as string otherwise
+    
+    console.log(JSON.stringify(asset));
     database.collection('assets', function(err, collection) {
         collection.update({'_id':new BSON.ObjectID(id)}, asset, {safe:true}, function(err, result) {
             if (err) {

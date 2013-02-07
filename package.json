@@ -12,7 +12,8 @@
         "imagemagick": "*",
 		"formidable": "*",
 		"gridform": "*",
-		"exif":	"*"
+		"exif":	"*",
+		"sanitizer": "*"
     },
     "engines": {
         "node": "0.8.*",

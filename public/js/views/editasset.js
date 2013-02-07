@@ -29,12 +29,14 @@ window.EditAssetView = Backbone.View.extend({
 
     beforeSave: function () {
         var self = this;
+        var editor = CKEDITOR.instances.description;
+        this.model.set('description', editor.getData());
         this.saveAsset();
         return false;
     },
 
     saveAsset: function () {
-        var self = this;        
+        var self = this;
         console.log('before save');
         self.model.save(null, {
             success: function (model) {                

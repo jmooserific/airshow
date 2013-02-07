@@ -15,6 +15,7 @@ window.Asset = Backbone.Model.extend({
         filename: null,
         type: null,
         etag: null,
+        hasPreview: false,
         originalGridID: null,
         previewGridID: null,
         added: new Date().toString(),
