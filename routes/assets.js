@@ -3,7 +3,8 @@ var mongo = require('mongodb'),
 	gridform = require('gridform'),
 	formidable = require('formidable'),
 	exif = require('../lib/exif'),
-	sanitizer = require('sanitizer');
+	sanitizer = require('sanitizer'),
+	path = require('path');
 
 var database = null,
     grid = null,
@@ -60,7 +61,7 @@ exports.createAssets = function(req, res) {
 		//file.root // the root of the files collection used in MongoDB ('fs' here means the full collection in mongo is named 'fs.files')
 		//file.id   // the ObjectId for this file
 		asset.originalGridID = file.id.toString();
-		asset.title = file.name;
+		asset.title = path.basename(file.name, path.extname(file.name));
         asset.filename = file.name;
 		asset.type = file.type;
 		asset.added = new Date().toString();
@@ -212,6 +213,9 @@ var processAsset = function(asset, id) {
             if (err) throw err;
 			
 			exif(data, asset, function(err, exifPhoto){});
+			if (asset.exif.description) {
+				asset.description = asset.exif.description;
+			}
 			
             im.resize({
                 srcData: data,
