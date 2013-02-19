@@ -12,7 +12,7 @@
         "imagemagick": "*",
 		"formidable": "*",
 		"gridform": "*",
-		"exif":	"*",
+		"exif": "git://github.com/cianclarke/node-exif.git",
 		"sanitizer": "*"
     },
     "engines": {
