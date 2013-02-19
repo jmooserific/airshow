@@ -2,7 +2,7 @@ var mongo = require('mongodb'),
     im = require('imagemagick'),
 	gridform = require('gridform'),
 	formidable = require('formidable'),
-	ExifImage = require('exif'),
+	exif = require('../lib/exif'),
 	sanitizer = require('sanitizer');
 
 var database = null,
@@ -211,6 +211,8 @@ var processAsset = function(asset, id) {
         grid.get(new BSON.ObjectID(asset.originalGridID), function(err, data) {
             if (err) throw err;
 			
+			exif(data, asset, function(err, exifPhoto){});
+			
             im.resize({
                 srcData: data,
                 quality: 0.5,
@@ -220,6 +222,7 @@ var processAsset = function(asset, id) {
                 if (err) throw err;
                 grid.put(new Buffer(stdout, "binary"), {metadata:{type: asset.type}, content_type: 'binary'}, function(err, fileInfo) {
                     if (err) throw err;
+					
                     asset.previewGridID = fileInfo._id.toString();
                     asset.hasPreview = true;
                     delete asset._id;
@@ -236,6 +239,34 @@ var processAsset = function(asset, id) {
                     });
                 });
             });
+        });
+    }
+};
+
+var getExif = function(asset, id) {
+    if (asset._id) {
+        id = asset._id.toString();
+    }
+    if (asset.originalGridID) {
+        console.log('Getting EXIF for ' + id);
+        grid.get(new BSON.ObjectID(asset.originalGridID), function(err, data) {
+            if (err) throw err;
+			
+            try {
+			    new ExifImage({ image: data }, function (error, data) {
+			        if (error)
+			            console.log('Error: ' + error.message);
+			        else
+						var image = data.image,
+						exif = data.exif,
+						gps = data.gps,
+						arrays = image.concat(exif, gps);
+						
+			            console.log(arrays); // Do something with your data!
+			    });
+			} catch (error) {
+			    console.log('Error: ' + error);
+			}
         });
     }
 };
