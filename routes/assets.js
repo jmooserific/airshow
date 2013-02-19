@@ -213,8 +213,9 @@ var processAsset = function(asset, id) {
             if (err) throw err;
 			
 			exif(data, asset, function(err, exifPhoto){});
-			if (asset.exif.description) {
-				asset.description = asset.exif.description;
+			//asset.exif["Size"] = getReadableFileSizeString(data.length);			
+			if (asset.exif["Description"]) {
+				asset.description = asset.exif["Description"];
 			}
 			
             im.resize({
@@ -273,4 +274,16 @@ var getExif = function(asset, id) {
 			}
         });
     }
+};
+
+function getReadableFileSizeString(fileSizeInBytes) {
+
+    var i = -1;
+    var byteUnits = [' kB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
+    do {
+        fileSizeInBytes = fileSizeInBytes / 1024;
+        i++;
+    } while (fileSizeInBytes > 1024);
+
+    return Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
 };
