@@ -30,6 +30,14 @@ min-height: 50px;
 margin-top: -65px;
 margin-bottom: 1em;
 text-align: right;
+display: block;
+list-style: none;
+font-size: 80%;
+}
+
+.toolbar li {
+display: inline;
+margin: 1em;
 }
 
 footer {
@@ -187,4 +195,27 @@ box-shadow: none;
 width: 10px;
 color: #aaa;
 font-size: 150%;
+}
+
+td.actions {
+text-align: right;
+}
+
+a.adduser {
+margin-bottom: 1em;
+}
+
+.form-signin {
+max-width: 300px;
+padding: 19px 29px 29px;
+margin: 0 auto 20px;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+margin-bottom: 15px;
+padding: 7px 9px;
 }

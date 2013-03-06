@@ -1,13 +1,31 @@
+$.ajaxSetup({
+    statusCode: {
+        401: function(){
+            // Redirec the to the login page.
+            window.location.replace('/#login');
+         
+        },
+        403: function() {
+            // 403 -- Access denied
+            window.location.replace('/#login');
+        }
+    }
+});
+
 var AppRouter = Backbone.Router.extend({
 
     routes: {
         ""                  : "home",
-        "assets"	: "list",
-        "assets/page/:page"	 : "list",
-        "assets/add"         : "addAsset",
-        "assets/:id/edit"    : "editAsset",
-        "assets/:id"         : "assetDetails",
-		"newassets"			 : "newAssets"
+        "assets"			: "listAssets",
+        "assets/page/:page"	: "listAssets",
+        "assets/add"        : "addAsset",
+        "assets/:id/edit"   : "editAsset",
+        "assets/:id"        : "assetDetails",
+		"newassets"			: "newAssets",
+		"login"				: "login",
+		"users"				: "listUsers",
+		"users/add"         : "addUser",
+		"users/:id"         : "userDetails"
     },
 
     initialize: function () {
@@ -19,7 +37,7 @@ var AppRouter = Backbone.Router.extend({
         app.navigate('assets', true);
     },
 
-	list: function(page) {
+	listAssets: function(page) {
         var p = page ? parseInt(page, 10) : 1;
         var assetList = new AssetCollection();
         $(".thumbnails").fadeOut();
@@ -27,13 +45,11 @@ var AppRouter = Backbone.Router.extend({
             $("#content").html(new AssetListView({model: assetList, page: p}).el);
             $(".thumbnails").fadeIn();
         }});
-        this.headerView.selectMenuItem('home-menu');
     },
 
 	newAssets: function() {
         $('#content').html(new NewAssetsView().el);
 		$(".dropzone").dropzone();
-        this.headerView.selectMenuItem();
 	},
 
     assetDetails: function (id) {
@@ -56,17 +72,38 @@ var AppRouter = Backbone.Router.extend({
             $("#content").html(new EditAssetView({model: asset}).el);
             CKEDITOR.replace( 'description' );
         }});
-        this.headerView.selectMenuItem();
     },
 
 	addAsset: function() {
         var asset = new Asset();
         $('#content').html(new EditAssetView({model: asset}).el);
-        this.headerView.selectMenuItem('add-menu');
-	}
+	},
+	
+	listUsers: function() {
+        var userList = new UserCollection();
+        userList.fetch({success: function(){
+            $("#content").html(new UserListView({model: userList}).el);
+        }});
+    },
+	
+	userDetails: function (id) {
+        var user = new User({_id: id});
+        user.fetch({success: function(){
+            $("#content").html(new UserView({model: user}).el);
+        }});
+    },
+	
+	addUser: function() {
+        var user = new User();
+        $('#content').html(new UserView({model: user}).el);
+	},
+	
+	login: function() {
+        $('#content').html(new LoginView().el);
+	},
 });
 
-utils.loadTemplate(['HeaderView', 'AssetView', 'EditAssetView', 'AssetListItemView', 'NewAssetsView'], function() {
+utils.loadTemplate(['HeaderView', 'AssetView', 'EditAssetView', 'AssetListItemView', 'NewAssetsView', 'UserListItemView', 'UserView', 'LoginView'], function() {
     app = new AppRouter();
     Backbone.history.start();
 });

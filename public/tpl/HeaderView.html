@@ -1,6 +1,12 @@
 <div class="page-header">
     <h1><a href="/#assets">Hello.</a></h1>
 </div>
-<div class="toolbar">
-    <a href="#newassets" class="btn btn-small shadow">Add images</a>
-</div>
+<ul class="toolbar">
+	<% if ($.cookie('user')) { %>
+    	<li><a href="#newassets">Upload Images</a></li>
+		<li><a href="#users">Edit Users</a></li>
+		<li><a href="logout" id="logout">Logout</a></li>
+	<% } else { %>
+		<li><a href="#login">Login</a></li>
+	<% } %>
+</ul>

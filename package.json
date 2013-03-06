@@ -1,7 +1,7 @@
 {
     "name": "airshow",
     "description": "A simply awesome node.js photo gallery server.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": true,
     "scripts": {
         "start": "node server"
@@ -13,7 +13,10 @@
 		"formidable": "*",
 		"gridform": "*",
 		"exif": "git://github.com/cianclarke/node-exif.git",
-		"sanitizer": "*"
+		"sanitizer": "*",
+		"bcrypt": "*",
+		"passport": "*",
+		"passport-local": "*"
     },
     "engines": {
         "node": "0.8.*",

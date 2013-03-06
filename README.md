@@ -6,7 +6,7 @@ This web application is primarily a vehicle for me to experiment with [Node.js](
 
 It only works in the most modern of browsers– the latest versions of Safari and Chrome, for example.
 
-Here's a [demo](http://airshow.herokuapp.com).
+Here’s a [demo](http://airshow.herokuapp.com).
 
 The basic structure of the application was strongly inspired by the excellent [nodecellar](https://github.com/ccoenraets/nodecellar) sample application by Christophe Coenraets.
 
@@ -18,11 +18,11 @@ The basic structure of the application was strongly inspired by the excellent [n
 * images are stored and served from the database ([GridFS](http://docs.mongodb.org/manual/applications/gridfs/))
 * responsive layout– resize your browser window
 * displays EXIF information
+* authentication
 
 ##Coming soon##
 * validation
 * support for larger image files 
-* authentication/authorization
 
 ## To install on your own Heroku account:##
 
