@@ -49,7 +49,7 @@ exports.updateUser = function(req, res) {
     var user = req.body;
     delete user._id;
     console.log('Updating user: ' + id);
-	if (req.params.password) {
+	if (user.password) {
 		user = hashPassword(user);
 	}
 	database.connection(function(db) {
