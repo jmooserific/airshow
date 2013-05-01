@@ -8,25 +8,27 @@
                 <img src="/assets/preview/<%= _id %>">
                 <h1><%= title %></h1>
                 <%= description %>
-				<% if (typeof exif != "undefined" && exif) { %>
-					<table class="exif-data table table-striped table-condensed table-hover">
-						
-						<% for (var key in exif) { %>
-							<tr>
-								<td>
-									<strong><%= key %></strong>
-								</td>
-								<td>
-									<%= exif[key] %>
-								</td>
-							</tr>
-						<% } %>
-						
-					</table>
-				<% } %>
+        <% if (typeof exif != "undefined" && exif) { %>
+          <table class="exif-data table table-striped table-condensed table-hover">
+
+            <% for (var key in exif) { %>
+              <tr>
+                <td>
+                  <strong><%= key %></strong>
+                </td>
+                <td>
+                  <%= exif[key] %>
+                </td>
+              </tr>
+            <% } %>
+
+          </table>
+        <% } %>
                 <div class="form-actions">
                     <a href="/assets/download/<%= _id %>" class="btn btn-small">Download</a>
-                    <a href="#assets/<%= _id %>/edit" class="btn btn-small">Edit</a>
+                    <% if ($.cookie('user')) { %>
+                      <a href="#assets/<%= _id %>/edit" class="btn btn-small">Edit</a>
+                    <% } %>
                 </div>
             </div>
         </div>
