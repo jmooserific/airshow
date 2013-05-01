@@ -3,10 +3,10 @@
 A _simply_ awesome photo gallery server.
 
 [ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/1pre.jpeg "Screenshot 1") ](https://raw.github.com/jmooserific/airshow/screenshots/1.jpeg "Screenshot 1")
-[ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/2pre.jpeg "Screenshot 2") ](https://raw.github.com/jmooserific/airshow/screenshots/1.jpeg "Screenshot 2")
-[ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/3pre.jpeg "Screenshot 3") ](https://raw.github.com/jmooserific/airshow/screenshots/1.jpeg "Screenshot 3")
-[ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/4pre.jpeg "Screenshot 4") ](https://raw.github.com/jmooserific/airshow/screenshots/1.jpeg "Screenshot 4")
-[ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/5pre.jpeg "Screenshot 5") ](https://raw.github.com/jmooserific/airshow/screenshots/1.jpeg "Screenshot 5")
+[ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/2pre.jpeg "Screenshot 2") ](https://raw.github.com/jmooserific/airshow/screenshots/2.jpeg "Screenshot 2")
+[ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/3pre.jpeg "Screenshot 3") ](https://raw.github.com/jmooserific/airshow/screenshots/3.jpeg "Screenshot 3")
+[ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/4pre.jpeg "Screenshot 4") ](https://raw.github.com/jmooserific/airshow/screenshots/4.jpeg "Screenshot 4")
+[ ![Image](https://raw.github.com/jmooserific/airshow/screenshots/5pre.jpeg "Screenshot 5") ](https://raw.github.com/jmooserific/airshow/screenshots/5.jpeg "Screenshot 5")
 
 This web application is primarily a vehicle for me to experiment with [Node.js](http://nodejs.org), [Express](http://expressjs.com), [Backbone.js](http://backbonejs.org), [mongoDB](http://www.mongodb.org) and [HTML5](http://en.wikipedia.org/wiki/HTML5)/[CSS3](http://en.wikipedia.org/wiki/CSS3#CSS_3). Perhaps it will be interesting to you, too.
 
