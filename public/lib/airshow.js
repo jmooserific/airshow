@@ -1,3 +1,15 @@
+function setSize() {
+    $("<img/>") // Make in memory copy of image to avoid css issues
+        .attr("src", $('#lightbox .front img').attr('src'))
+        .load(function() {
+            $('#lightbox .front img').attr('data-width', this.width);
+            $('#lightbox .front img').attr('data-height', this.height);
+            $('#loading').hide();
+            showLightbox();
+            resizeElements();
+        });
+}
+
 function showLightbox() {
     $('#lightbox .flipper').css( "-webkit-transform","rotateY(-90deg)" );
     $('#lightbox .flipper').css( "-moz-transform","rotateY(-90deg)" );
@@ -32,35 +44,31 @@ function resizeElements() {
 
         if ($('#lightbox .front img').attr('data-width')) {
 			originalWidth = $('#lightbox .front img').attr('data-width');
-		} else {
-			originalWidth = $('#lightbox .front img').width();
-			$('#lightbox .front img').attr('data-width', originalWidth);
 		}
 
 		if ($('#lightbox .front img').attr('data-height')) {
 			originalHeight = $('#lightbox .front img').attr('data-height');
-		} else {
-			originalHeight = $('#lightbox .front img').height();
-			$('#lightbox .front img').attr('data-height', originalHeight);
 		}
 
         var safeWidth = $(document).width() - 40;
         var safeHeight = $(document).height() - 40;
 
-        var scaleWidth = originalWidth / safeWidth;
-        var scaleHeight = originalHeight / safeHeight;
-
-        if (originalWidth / scaleWidth >= originalWidth && originalHeight / scaleHeight >= originalHeight) {
-            $('.flip-container, .front, .back').width(originalWidth);
-            $('.flip-container, .front, .back').height(originalHeight);
+        var scaleWidth = safeWidth / originalWidth;
+        var scaleHeight = safeHeight / originalHeight;
+        var scale;
+        if (scaleWidth < scaleHeight) {
+            scale = scaleWidth;
         } else {
-            if (scaleWidth > scaleHeight) {
-                $('.flip-container, .front, .back').width(originalWidth / scaleWidth);
-                $('.flip-container, .front, .back').height(originalHeight / scaleWidth);
-            } else {
-                $('.flip-container, .front, .back').width(originalWidth / scaleHeight);
-                $('.flip-container, .front, .back').height(originalHeight / scaleHeight - 1);
-            }
+            scale = scaleHeight;
+        }
+
+
+        if (scale >= 1) {
+            $('.flip-container, .front, .back').css('width', originalWidth);
+            $('.flip-container, .front, .back').css('height', originalHeight);
+        } else {
+            $('.flip-container, .front, .back').css('width', originalWidth * scale);
+            $('.flip-container, .front, .back').css('height', originalHeight * scale - 1);
         }
     }
 }

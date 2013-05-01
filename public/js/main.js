@@ -3,7 +3,7 @@ $.ajaxSetup({
         401: function(){
             // Redirec the to the login page.
             window.location.replace('/#login');
-         
+
         },
         403: function() {
             // 403 -- Access denied
@@ -58,13 +58,13 @@ var AppRouter = Backbone.Router.extend({
             app.navigate('assets', true);
             app.navigate(route, {trigger: false, replace: true});
         }
+        $('#loading').show();
         var asset = new Asset({_id: id});
         asset.fetch({success: function(){
             $("#lightbox_content").html(new AssetView({model: asset}).el);
-            showLightbox();
         }});
     },
-    
+
     editAsset: function (id) {
 		closeLightbox();
         var asset = new Asset({_id: id});
@@ -78,26 +78,26 @@ var AppRouter = Backbone.Router.extend({
         var asset = new Asset();
         $('#content').html(new EditAssetView({model: asset}).el);
 	},
-	
+
 	listUsers: function() {
         var userList = new UserCollection();
         userList.fetch({success: function(){
             $("#content").html(new UserListView({model: userList}).el);
         }});
     },
-	
+
 	userDetails: function (id) {
         var user = new User({_id: id});
         user.fetch({success: function(){
             $("#content").html(new UserView({model: user}).el);
         }});
     },
-	
+
 	addUser: function() {
         var user = new User();
         $('#content').html(new UserView({model: user}).el);
 	},
-	
+
 	login: function() {
         $('#content').html(new LoginView().el);
 	},
