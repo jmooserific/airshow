@@ -18,7 +18,7 @@ The basic structure of the application was strongly inspired by the excellent [n
 * images are stored and served from the database ([GridFS](http://docs.mongodb.org/manual/applications/gridfs/))
 * responsive layout– resize your browser window
 * displays EXIF information
-* authentication
+* authentication (the default account is change_me@fake.com / Airshow)
 
 ##Coming soon##
 * validation
