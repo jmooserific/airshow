@@ -20,14 +20,12 @@ color: #aaa;
 }
 
 #content {
-min-height: 380px;
 }
 .header {
 min-height: 50px;
 }
 
 .toolbar {
-margin-top: -65px;
 margin-bottom: 1em;
 text-align: right;
 display: block;
@@ -41,12 +39,12 @@ margin: 1em;
 }
 
 footer {
+clear:both;
 font-size: 10pt;
 }
 
 .thumbnails {
 text-align: center;
-min-height: 380px;
 }
 
 p.no-images {

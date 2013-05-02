@@ -10,14 +10,14 @@ window.AssetListView = Backbone.View.extend({
         var len = assets.length;
         var startPos = (this.options.page - 1) * perPage;
         var endPos = Math.min(startPos + perPage, len);
-		
+
 		$(this.el).html('');
-		
+
 		if (len > perPage) {
             $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
         }
-		
-        $(this.el).append('<ul class="thumbnails" style="display: none;"></ul>');
+
+        $(this.el).append('<ul class="thumbnails row" style="display: none;"></ul>');
 
         for (var i = startPos; i < endPos; i++) {
             $('.thumbnails', this.el).append(new AssetListItemView({model: assets[i]}).render().el);
@@ -26,7 +26,7 @@ window.AssetListView = Backbone.View.extend({
 		if (len == 0) {
 			$(this.el).html('<p class="no-images">Please <a href="#newassets">add some images</a>.</p>');
 		}
-        
+
         return this;
     }
 });
