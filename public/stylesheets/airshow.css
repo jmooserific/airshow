@@ -130,27 +130,28 @@ overflow: scroll;
 }
 
 .back .content {
-margin: 2em;
+margin: 2em auto;
 text-align: left;
 position: relative;
+max-width: 700px;
+}
+
+.back .title {
+  float: left;
 }
 
 .back h1 {
-height: 100px;
 font-size: 18pt;
-line-height: 18pt;
-margin-bottom: 1em;
+margin-top: 0;
 }
 
 .back img {
-float: right;
-margin-left: 1em;
-margin-bottom: 1em;
-height: 100px;
+  max-width: 100px;
 }
 
-.back .form-actions {
-text-align: center;
+.back .description {
+  clear: both;
+  margin-bottom: 2em;
 }
 
 .back .exif-data {
