@@ -130,6 +130,7 @@ overflow: scroll;
 }
 
 .back .content {
+padding: 0 1em;
 margin: 2em auto;
 text-align: left;
 position: relative;
