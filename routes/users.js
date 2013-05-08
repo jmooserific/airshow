@@ -109,8 +109,7 @@ exports.findUserById = function(id, callback) {
 
 exports.validPassword = function(storedHash, salt, providedPassword) {
 	newHash = hashThis(providedPassword, salt);
-	console.log('comparing ' + storedHash + ' and ' + newHash);
-    if (newHash == storedHash) {
+  if (newHash == storedHash) {
 		console.log('Authenticated!');
 		return true;
 	}
