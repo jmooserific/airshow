@@ -1,2 +1,5 @@
-<form action="/newassets" class="dropzone" id="dropzone">
+<form action="/newassets" method="post" enctype="multipart/form-data" class="dropzone" id="dropzone">
+  <div class="fallback">
+    <input name="file" type="file" multiple>
+  </div>
 </form>
