@@ -18,7 +18,7 @@
                 <div class="description">
                   <%= description %>
                 </div>
-                <% if (typeof exif != "undefined" && exif == true) { %>
+                <% if (typeof exif != "undefined" && exif != "false") { %>
                   <table class="exif-data table table-striped table-condensed table-hover">
                     <% for (var key in exif) { %>
                       <tr>
