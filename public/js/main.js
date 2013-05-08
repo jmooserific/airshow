@@ -49,7 +49,17 @@ var AppRouter = Backbone.Router.extend({
 
 	newAssets: function() {
         $('#content').html(new NewAssetsView().el);
-		$(".dropzone").dropzone();
+		$("#dropzone").dropzone({
+            maxFilesize: 5, // MB
+            accept: function(file, done) {
+              var acceptableFileTypes = ["image/jpeg","image/png","image/tiff"];
+              if (acceptableFileTypes.indexOf(file.type) < 0) {
+                done("Sorry, this is not a supported file type.");
+              } else {
+                done();
+              }
+            }
+        });
 	},
 
     assetDetails: function (id) {
