@@ -11,7 +11,6 @@
         "mongodb": "1.1.8",
         "imagemagick": "*",
 		"formidable": "*",
-		"gridform": "*",
 		"exif": "git://github.com/cianclarke/node-exif.git",
 		"sanitizer": "*",
 		"bcrypt": "*",
