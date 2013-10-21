@@ -18,7 +18,7 @@
 		"passport-local": "*"
     },
     "engines": {
-        "node": "0.8.*",
-        "npm": "1.1.*"
+        "node": "0.10.x",
+        "npm":  "1.2.x"
     }
 }
